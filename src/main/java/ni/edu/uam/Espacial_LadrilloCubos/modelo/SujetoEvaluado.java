@@ -2,10 +2,13 @@ package ni.edu.uam.Espacial_LadrilloCubos.modelo;
 
 
     import java.util.*;
-import javax.persistence.*;
-import org.openxava.annotations.*;
+    import javax.persistence.*;
+    import org.openxava.annotations.*;
+    import lombok.*;//Importamos Lombok
 
     @Entity
+    @Getter @Setter //Se agregan los getter y setters
+    // Añadimos "resultados" al View para que se muestren abajo en la interfaz de OpenXava
     @View(members="idUsuario, nombreCompleto; correoElectronico, contrasenia; edad")
     public class SujetoEvaluado {
 
@@ -27,4 +30,12 @@ import org.openxava.annotations.*;
 
         @Required
         private int edad;
+
+
+
+
+        public void realizarTest() {
+            // Aquí irá la lógica cuando el sujeto inicie un test
+        }
 }
+
