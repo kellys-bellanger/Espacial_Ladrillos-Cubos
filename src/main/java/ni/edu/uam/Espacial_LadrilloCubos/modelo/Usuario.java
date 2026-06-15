@@ -2,11 +2,14 @@ package ni.edu.uam.Espacial_LadrilloCubos.modelo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.openxava.annotations.Hidden;
 import org.openxava.annotations.Required;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Clase que representa a un Usuario genérico dentro del sistema BFA.
@@ -15,19 +18,27 @@ import javax.persistence.Id;
  */
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Getter @Setter
 public class Usuario {
 
-    @Id // La clave primaria obligatoria
-    @Column(length=9) // Tamaño de la columna en base de datos y UI
-    private String idUsuario;
+    @Id
+    @Column(length=16) // Longitud ideal para el formato de cédula con guiones (ej: 001-000000-0000A)
+    @NotBlank(message="La cédula es obligatoria")
+    private String idUsuario; // Aquí se digitará la cédula directamente
 
+    @NotBlank(message="El nombre completo no puede quedar vacío")
+    @Size(min=3, max=50, message="El nombre debe tener entre 3 y 50 caracteres")
     @Column(length=50) @Required // Campo obligatorio para el nombre
     private String nombreCompleto;
 
+    @NotBlank(message="El correo electrónico es obligatorio")
+    @Email(message="Debe ingresar un correo electrónico válido (ejemplo: usuario@dominio.com)")
     @Column(length=50) @Required // Obligatorio para loguearse
     private String correoElectronico;
 
+    @NotBlank(message="La contraseña es obligatoria")
+    @Size(min=6, max=30, message="La contraseña debe tener al menos 6 caracteres por seguridad")
     @Column(length=30) @Required
     private String contrasenia;
 
