@@ -4,12 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.Hidden;
+import org.openxava.annotations.ReadOnly;
 import org.openxava.annotations.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 /**
  * Clase que representa a un Usuario genérico dentro del sistema BFA.
@@ -37,10 +39,16 @@ public class Usuario {
     @Column(length=50) @Required // Obligatorio para loguearse
     private String correoElectronico;
 
-    @NotBlank(message="La contraseña es obligatoria")
-    @Size(min=6, max=30, message="La contraseña debe tener al menos 6 caracteres por seguridad")
-    @Column(length=30) @Required
+    @Column(length=30)
+    @ReadOnly // Bloquea la casilla en la pantalla para que nadie escriba ahí
     private String contrasenia;
+
+    // se crea solita la contrsenia
+    @PrePersist // Se ejecuta automáticamente cuando le de al botón "Grabar"
+    private void generarContraseniaAutomatica() {
+        // Inventa un código de 8 letras y números al azar y lo guarda
+        this.contrasenia = UUID.randomUUID().toString().substring(0, 8);
+    }
 
     // Lógica
     public boolean autenticar(String correo, String password) {
