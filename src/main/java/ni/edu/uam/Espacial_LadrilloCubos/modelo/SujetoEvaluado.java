@@ -12,7 +12,7 @@ import javax.validation.constraints.Min;
 @Entity
 @PrimaryKeyJoinColumn(name="idUsuario") // Se conecta a la tabla Usuario usando la cédula
 @Getter @Setter
-public class SujetoEvaluado extends Usuario {
+public class SujetoEvaluado extends Usuario {//Traemos los atributos de usuario
 
     // --- ATRIBUTOS PROPIOS DEL SUJETO EVALUADO ---
 
@@ -23,6 +23,6 @@ public class SujetoEvaluado extends Usuario {
 
 
     public void realizarTest() {
-        // Aquí irá la lógica para que el sujeto inicie y responda el TestEspacial
+        //Este queda para que sea escalable, ese método lo dejamos estructurado como un hook (gancho) para la Fase 2 del proyecto. El alcance actual de nuestra entrega se centró en el backend del motor de cálculo y el módulo del psicólogo en ResultadoBFA.
     }
 }
