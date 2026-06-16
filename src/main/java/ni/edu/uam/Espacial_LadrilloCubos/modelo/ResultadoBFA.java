@@ -25,7 +25,7 @@ public class ResultadoBFA {
     private int percentil;
 
     // Relación con el alumno (SujetoEvaluado)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)//Aca solo se usan los necesarios
     @JoinColumn(name = "idUsuario")
     @DescriptionsList(descriptionProperties = "nombreCompleto")
     @Required
@@ -38,9 +38,9 @@ public class ResultadoBFA {
     @Required
     private TestEspacial testEspacial;
 
-    // =========================================================================
-    // MÉTODOS DE NEGOCIO CORREGIDOS
-    // =========================================================================
+    // ====================
+    // MÉTODOS DE NEGOCIO
+    // ====================
 
     /**
      * Calcula el puntaje directo con base en un arreglo de respuestas.
