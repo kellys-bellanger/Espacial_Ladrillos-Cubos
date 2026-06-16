@@ -1,40 +1,28 @@
 package ni.edu.uam.Espacial_LadrilloCubos.modelo;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.openxava.annotations.Required;
 
-import java.util.*;
-import javax.persistence.*;
-import org.openxava.annotations.*;
-import lombok.*;//Importamos Lombok
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
-@Getter @Setter //Se agregan los getter y setters
-// Añadimos "resultados" al View para que se muestren abajo en la interfaz de OpenXava
-@View(members="idUsuario, nombreCompleto; correoElectronico, contrasenia; edad")
-public class SujetoEvaluado {
+@PrimaryKeyJoinColumn(name="idUsuario") // Se conecta a la tabla Usuario usando la cédula
+@Getter @Setter
+public class SujetoEvaluado extends Usuario {
 
-    @Id
-    @Column(length=32)
-    @Required
-    private String idUsuario;
+    // --- ATRIBUTOS PROPIOS DEL SUJETO EVALUADO ---
 
-    @Column(length=100)
-    @Required
-    private String nombreCompleto;
-
-    @Column(length=100)
-    @Required
-    private String correoElectronico;
-
-    @Column(length=50)
-    private String contrasenia;
-
-    @Required
+    @Min(value = 4, message = "La edad mínima permitida es de 4 años")
+    @Max(value = 100, message = "La edad máxima permitida es de 100 años")
+    @Required // Anotación de OpenXava para que sea obligatorio en la pantalla
     private int edad;
 
 
-
-
     public void realizarTest() {
-        // Aquí irá la lógica cuando el sujeto inicie un test
+        // Aquí irá la lógica para que el sujeto inicie y responda el TestEspacial
     }
 }
