@@ -1,6 +1,6 @@
-package ni.edu.uam.Espacial_LadrilloCubos.run.modelo;
+package ni.edu.uam.Espacial_LadrilloCubos.modelo;
 
-import ni.edu.uam.Espacial_LadrilloCubos.run.modelo.PreguntaCubos;
+
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import java.util.*;

@@ -42,5 +42,5 @@ public class PreguntaCubos {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTest")
     @DescriptionsList(descriptionProperties = "nombrePrueba") // Muestra un combo box lindo en OpenXava
-    private ni.edu.uam.Espacial_LadrilloCubos.run.modelo.TestEspacial testEspacial;
+    private TestEspacial testEspacial;
 }
