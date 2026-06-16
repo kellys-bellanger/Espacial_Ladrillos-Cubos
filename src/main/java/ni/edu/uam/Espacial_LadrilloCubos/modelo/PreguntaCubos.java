@@ -1,4 +1,4 @@
-package ni.edu.uam.Espacial_LadrilloCubos.run.modelo;
+package ni.edu.uam.Espacial_LadrilloCubos.modelo;
 
 import javax.persistence.*;
 import org.openxava.annotations.*;
@@ -34,7 +34,7 @@ public class PreguntaCubos {
     private String respuestaCorrecta; // A, B, C o D
 
     @Required
-    @Stereotype("IMAGE")
+    @File
     @Column(length = 250)
     private String rutaImagenCubo;
 
@@ -42,5 +42,5 @@ public class PreguntaCubos {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTest")
     @DescriptionsList(descriptionProperties = "nombrePrueba") // Muestra un combo box lindo en OpenXava
-    private TestEspacial testEspacial;
+    private ni.edu.uam.Espacial_LadrilloCubos.run.modelo.TestEspacial testEspacial;
 }
