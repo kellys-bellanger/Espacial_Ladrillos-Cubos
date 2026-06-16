@@ -1,12 +1,13 @@
-/*C2*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C3*/SET SCHEMA PUBLIC
-create table IMAGES (ID varchar(32) not null, GALLERY varchar(32), image varbinary(16777216), primary key (ID))
-create table OXDISCUSSIONCOMMENTS (id varchar(32) not null, "COMMENT" clob(16777216), discussionId varchar(32), time timestamp, userName varchar(30), primary key (id))
-create table ResultadoBFA (idResultado varchar(32) not null, percentil integer not null, puntajeDirecto integer not null, primary key (idResultado))
-create table SujetoEvaluado (idUsuario varchar(32) not null, contrasenia varchar(50), correoElectronico varchar(100), edad integer not null, nombreCompleto varchar(100), primary key (idUsuario))
-create index IDXbhlx4vunn24ym1tbrlgq8g30m on OXDISCUSSIONCOMMENTS (discussionId)
-INSERT INTO SUJETOEVALUADO VALUES('001-101201-1007Y','M2885FW07','raulvruiz@uamv.edu.ni',18,'Ra\u00fal Natanael Valverde Ru\u00edz')
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+create table Psicologo (codigoColegiado varchar(20), idUsuario varchar(16) not null, primary key (idUsuario))
+create table Usuario (idUsuario varchar(16) not null, contrasenia varchar(30), correoElectronico varchar(50), nombreCompleto varchar(50), primary key (idUsuario))
+alter table Psicologo add constraint FK3xuk14o8apa0bqhgk2xubk41g foreign key (idUsuario) references Usuario
+INSERT INTO USUARIO VALUES('pipi','rsdtfhgd','seraydtfudguihtusdyft@uam.cpom','fdasgdhjkg')
 COMMIT
-DELETE FROM SUJETOEVALUADO WHERE IDUSUARIO='001-101201-1007Y'
+INSERT INTO USUARIO VALUES('6354','esrdtryft','waesrdgf@r.mrf','ertygfhgjhkk')
+INSERT INTO PSICOLOGO VALUES('15254','6354')
+COMMIT
+INSERT INTO SUJETOEVALUADO VALUES('123456','ersdgf','adsgfhc6hyhwthew',23,'ewraetsrydtfykg')
 COMMIT
