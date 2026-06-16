@@ -40,15 +40,8 @@ public class Usuario {
     private String correoElectronico;
 
     @Column(length=30)
-    @ReadOnly // Bloquea la casilla en la pantalla para que nadie escriba ahí
+    @Required
     private String contrasenia;
-
-    // se crea solita la contrsenia
-    @PrePersist // Se ejecuta automáticamente cuando le de al botón "Grabar"
-    private void generarContraseniaAutomatica() {
-        // Inventa un código de 8 letras y números al azar y lo guarda
-        this.contrasenia = UUID.randomUUID().toString().substring(0, 8);
-    }
 
     // Lógica
     public boolean autenticar(String correo, String password) {
