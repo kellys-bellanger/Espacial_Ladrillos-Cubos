@@ -31,4 +31,3 @@ public class Psicologo extends Usuario{
         // Aquí irá la lógica para que el psicólogo revise el percentil obtenido por los alumnos
     }
 }
-
