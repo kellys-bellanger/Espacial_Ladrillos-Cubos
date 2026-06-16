@@ -1,7 +1,5 @@
 /*C4*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C5*/SET SCHEMA PUBLIC
-INSERT INTO USUARIO VALUES('121-031107-1001H','4e912acd','kbbellanger@uamv.edu.ni','Kellys Belisa Bellanger Saenz')
-COMMIT
-INSERT INTO USUARIO VALUES('001-101207-1007Y','92907e7b','rualvruiz@uamv.edu.ni','Raul Natanel Valverde Ruiz')
-COMMIT
+create table Psicologo (codigoColegiado varchar(20), idUsuario varchar(16) not null, primary key (idUsuario))
+alter table Psicologo add constraint FK3xuk14o8apa0bqhgk2xubk41g foreign key (idUsuario) references Usuario
