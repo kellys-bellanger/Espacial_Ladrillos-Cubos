@@ -1,8 +1,6 @@
 package ni.edu.uam.Espacial_LadrilloCubos.run.modelo;
 
 import javax.persistence.*;
-
-import ni.edu.uam.Espacial_LadrilloCubos.modelo.TestEspacial;
 import org.openxava.annotations.*;
 import lombok.Getter;
 import lombok.Setter;

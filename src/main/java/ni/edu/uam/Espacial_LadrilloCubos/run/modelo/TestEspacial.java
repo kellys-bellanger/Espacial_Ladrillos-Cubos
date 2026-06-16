@@ -1,4 +1,4 @@
-package ni.edu.uam.Espacial_LadrilloCubos.modelo;
+package ni.edu.uam.Espacial_LadrilloCubos.run.modelo;
 
 import ni.edu.uam.Espacial_LadrilloCubos.run.modelo.PreguntaCubos;
 import org.openxava.annotations.*;
