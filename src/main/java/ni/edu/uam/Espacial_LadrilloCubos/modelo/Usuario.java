@@ -11,8 +11,9 @@ import javax.validation.constraints.Size;
 
 /**
  * Clase que representa a un Usuario genérico dentro del sistema BFA.
- * Sirve como clase padre para aplicar herencia en los roles del sistema.
+ * Sirve como clase base (padre) para aplicar herencia en los roles del sistema.
  * * @author Kellys
+ * @version 1.0
  */
 
 @Entity
@@ -39,7 +40,12 @@ public class Usuario {
     @Required
     private String contrasenia;
 
-    // Lógica
+    /**
+     * Realiza el control lógico de autenticación del usuario.
+     * * @param correo Correo ingresado en el login.
+     * @param password Contraseña ingresada en el login.
+     * @return true si las credenciales coinciden, false en caso contrario.
+     */
     public boolean autenticar(String correo, String password) {
         if (this.correoElectronico == null || this.contrasenia == null) return false;
         return this.correoElectronico.equals(correo) && this.contrasenia.equals(password);
