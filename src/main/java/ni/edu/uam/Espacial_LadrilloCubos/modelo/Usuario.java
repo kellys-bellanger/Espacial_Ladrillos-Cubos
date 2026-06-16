@@ -2,16 +2,12 @@ package ni.edu.uam.Espacial_LadrilloCubos.modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.ReadOnly;
 import org.openxava.annotations.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.UUID;
 
 /**
  * Clase que representa a un Usuario genérico dentro del sistema BFA.
@@ -25,7 +21,7 @@ import java.util.UUID;
 public class Usuario {
 
     @Id
-    @Column(length=16) // Longitud ideal para el formato de cédula con guiones (ej: 001-000000-0000A)
+    @Column(length=20) // Longitud ideal para el formato de cédula con guiones (ej: 001-000000-0000A)
     @NotBlank(message="La cédula es obligatoria")
     private String idUsuario; // Aquí se digitará la cédula directamente
 
@@ -45,6 +41,7 @@ public class Usuario {
 
     // Lógica
     public boolean autenticar(String correo, String password) {
+        if (this.correoElectronico == null || this.contrasenia == null) return false;
         return this.correoElectronico.equals(correo) && this.contrasenia.equals(password);
     }
 }
