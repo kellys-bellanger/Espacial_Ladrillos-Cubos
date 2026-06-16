@@ -1,121 +1,93 @@
 package ni.edu.uam.Espacial_LadrilloCubos.run.modelo;
 
-import java.time.LocalDate;
-import java.time.Period;
-import javax.persistence.*;
 import org.openxava.annotations.*;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
-@View(members = "alumno; puntajeDirecto, percentil")
+@Tab(properties = "idTest, nombrePrueba, tiempoLimite, cantidadItems")
 public class TestEspacial {
 
-    @Id @GeneratedValue
+
+    @Id
+    @Column(length = 50)
+    @Required
     @Hidden
-    private Long id;
+    private String idTest;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @Column(length = 100)
     @Required
-    private SujetoEvaluado alumno;
+    private String nombrePrueba;
 
-    @Required
-    private int puntajeDirecto;
+    /** Tiempo límite expresado en segundos */
+    private int tiempoLimite;
 
-    @ReadOnly
-    private Integer percentil;
+    private int cantidadItems;
+
+    // ?? Relación de agregación con PreguntaCubos ????????????????????????????
+    // El diamante en el diagrama indica agregación (TestEspacial "tiene" preguntas)
+    // cascade ALL: las preguntas se persisten/eliminan junto con el test
+
+    @OneToMany(
+            mappedBy  = "testEspacial",
+            cascade   = CascadeType.ALL,
+            fetch     = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    @ListProperties("idPregunta, enunciado, rutaImagen, respuestaCorrecta")
+    @NewAction("PreguntaCubos.new")
+    private List<PreguntaCubos> preguntas = new ArrayList<>();
+
+    // ?? Método de negocio ???????????????????????????????????????????????????
 
     /**
-     * Convierte el Puntaje Directo en un Percentil según la edad del alumno.
-     * Se ejecuta automáticamente antes de guardar o actualizar el registro.
+     * Retorna todas las preguntas asociadas a este test como un arreglo,
+     * tal como lo define el diagrama de clases.
      */
-    @PrePersist
-    @PreUpdate
-    public void generarBaremacionAutomatica() {
-
-        try {
-            // --- Validación de datos de entrada ---
-            if (alumno == null || alumno.getEdad() == null) {
-                throw new IllegalArgumentException(
-                        "No se puede generar la baremación: el alumno no tiene "
-                                + "una fecha de nacimiento registrada (historial incompleto).");
-            }
-
-            int edad = calcularEdad(alumno.getEdad());
-
-            if (edad <= 0 || edad > 100) {
-                throw new IllegalArgumentException(
-                        "La edad calculada del alumno (" + edad + ") "
-                                + "está fuera de un rango válido. Revisa el historial.");
-            }
-
-            // --- Búsqueda en la tabla de baremos ---
-            this.percentil = buscarPercentilEnBaremo(edad, this.puntajeDirecto);
-
-        } catch (IllegalArgumentException e) {
-            // Re-lanzamos la excepción controlada: OpenXava la captura
-            // y la muestra como mensaje de error al usuario, sin "congelar" la pantalla.
-            throw e;
-
-        } catch (Exception e) {
-            // Cualquier otro error inesperado se convierte también en
-            // una excepción controlada y entendible.
-            throw new IllegalArgumentException(
-                    "Error inesperado al calcular el percentil: " + e.getMessage());
-        }
+    public PreguntaCubos[] cargarPreguntas() {
+        return preguntas.toArray(new PreguntaCubos[0]);
     }
 
-    private int calcularEdad(LocalDate fechaNacimiento) {
-        return Period.between(fechaNacimiento, LocalDate.now()).getYears();
+    // ?? Getters y Setters ???????????????????????????????????????????????????
+
+    public String getIdTest() {
+        return idTest;
     }
 
-    /**
-     * Tabla lógica de baremos por tramo de edad.
-     * (Estos valores son de ejemplo: en un caso real vendrían de
-     * literatura psicométrica o de una tabla en base de datos.)
-     */
-    private int buscarPercentilEnBaremo(int edad, int puntajeDirecto) {
-
-        if (edad >= 6 && edad <= 8) {
-            return baremoInfantil(puntajeDirecto);
-        } else if (edad >= 9 && edad <= 12) {
-            return baremoPreadolescente(puntajeDirecto);
-        } else if (edad >= 13 && edad <= 17) {
-            return baremoAdolescente(puntajeDirecto);
-        } else {
-            return baremoAdulto(puntajeDirecto);
-        }
+    public void setIdTest(String idTest) {
+        this.idTest = idTest;
     }
 
-    private int baremoInfantil(int pd) {
-        if (pd <= 5) return 10;
-        if (pd <= 10) return 30;
-        if (pd <= 15) return 50;
-        if (pd <= 20) return 70;
-        return 90;
+    public String getNombrePrueba() {
+        return nombrePrueba;
     }
 
-    private int baremoPreadolescente(int pd) {
-        if (pd <= 8) return 15;
-        if (pd <= 14) return 40;
-        if (pd <= 20) return 60;
-        if (pd <= 25) return 80;
-        return 95;
+    public void setNombrePrueba(String nombrePrueba) {
+        this.nombrePrueba = nombrePrueba;
     }
 
-    private int baremoAdolescente(int pd) {
-        if (pd <= 10) return 20;
-        if (pd <= 18) return 45;
-        if (pd <= 24) return 65;
-        if (pd <= 30) return 85;
-        return 99;
+    public int getTiempoLimite() {
+        return tiempoLimite;
     }
 
-    private int baremoAdulto(int pd) {
-        if (pd <= 12) return 25;
-        if (pd <= 20) return 50;
-        if (pd <= 28) return 75;
-        if (pd <= 34) return 90;
-        return 99;
+    public void setTiempoLimite(int tiempoLimite) {
+        this.tiempoLimite = tiempoLimite;
     }
 
+    public int getCantidadItems() {
+        return cantidadItems;
+    }
 
+    public void setCantidadItems(int cantidadItems) {
+        this.cantidadItems = cantidadItems;
+    }
+
+    public List<PreguntaCubos> getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(List<PreguntaCubos> preguntas) {
+        this.preguntas = preguntas;
+    }
 }
