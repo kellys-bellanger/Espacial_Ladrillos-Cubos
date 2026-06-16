@@ -45,4 +45,3 @@ public class Usuario {
         return this.correoElectronico.equals(correo) && this.contrasenia.equals(password);
     }
 }
-
