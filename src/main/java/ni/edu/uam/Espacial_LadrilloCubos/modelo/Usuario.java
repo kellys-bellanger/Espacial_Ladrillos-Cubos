@@ -22,9 +22,9 @@ import javax.validation.constraints.Size;
 public class Usuario {
 
     @Id
-    @Column(length=20) // Longitud ideal para el formato de cédula con guiones (ej: 001-000000-0000A)
+    @Column(length=20)
     @NotBlank(message="La cédula es obligatoria")
-    private String idUsuario; // Aquí se digitará la cédula directamente
+    private String idUsuario; // Aquí se escribira la cédula directamente
 
     @NotBlank(message="El nombre completo no puede quedar vacío")
     @Size(min=3, max=50, message="El nombre debe tener entre 3 y 50 caracteres")
@@ -38,7 +38,7 @@ public class Usuario {
 
     @Column(length=30)
     @Required
-    private String contrasenia;
+    private String contraseña;
 
     /**
      * Realiza el control lógico de autenticación del usuario.
@@ -47,7 +47,7 @@ public class Usuario {
      * @return true si las credenciales coinciden, false en caso contrario.
      */
     public boolean autenticar(String correo, String password) {
-        if (this.correoElectronico == null || this.contrasenia == null) return false;
-        return this.correoElectronico.equals(correo) && this.contrasenia.equals(password);
+        if (this.correoElectronico == null || this.contraseña == null) return false;
+        return this.correoElectronico.equals(correo) && this.contraseña.equals(password);
     }
 }
