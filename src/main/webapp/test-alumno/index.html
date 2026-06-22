@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFA - Sistema de Evaluación Psicométrica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="login-view" class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card login-card p-4 shadow-lg text-center">
+        <div class="brand-logo mb-3">
+            <span class="logo-icon">🧩</span>
+        </div>
+        <h2 class="fw-bold mb-1">Batería Factorial de Aptitudes</h2>
+        <p class="text-muted small mb-4">Módulo de Evaluación: Aptitud Espacial</p>
+
+        <form id="login-form">
+            <div class="mb-3 text-start">
+                <label for="student-id" class="form-label fw-medium">Número de Cédula / Identificación</label>
+                <input type="text" class="form-control form-control-lg" id="student-id" placeholder="Ej: 001-XXXXXX-XXXXX" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold mt-2">Iniciar Prueba Espacial</button>
+        </form>
+        <div class="mt-4 text-muted card-footer-text">
+            <small>Submódulo: Ladrillos y Cubos • UAM 2026</small>
+        </div>
+    </div>
+</div>
+
+<div id="test-view" class="container py-4 d-none">
+    <div class="row sticky-top bg-light pt-2 pb-3 shadow-sm rounded mb-4 px-3 align-items-center header-timer border">
+        <div class="col-md-6 col-sm-12">
+            <h4 class="fw-bold m-0 text-primary">Test Espacial: Ladrillos y Cubos</h4>
+            <p class="text-muted small m-0" id="student-display">Evaluando: Alumno</p>
+        </div>
+        <div class="col-md-6 col-sm-12 text-md-end mt-2 mt-md-0">
+            <div class="timer-box d-inline-block p-2 px-4 rounded shadow-sm">
+                <span class="timer-label small fw-bold text-uppercase d-block text-start">Tiempo Restante</span>
+                <span id="timer-count" class="timer-numbers fw-bold">03:30</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card test-card shadow-sm p-4 border-0">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge bg-secondary p-2 fs-6" id="item-progress">Reactivo 1 de 4</span>
+                    <div class="progress w-50" style="height: 10px;">
+                        <div id="progress-bar-fill" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%"></div>
+                    </div>
+                </div>
+
+                <h5 class="fw-semibold mb-4 card-title" id="question-text">Cargando enunciado...</h5>
+
+                <div class="text-center test-image-container p-3 mb-4 rounded border">
+                    <img id="question-image" src="" alt="Reactivo Psicométrico Cubos 3D" class="img-fluid rounded image-placeholder">
+                </div>
+
+                <div class="row g-3" id="options-container">
+                </div>
+
+                <div class="d-flex justify-content-between mt-5 pt-3 border-top">
+                    <button id="btn-prev" class="btn btn-outline-secondary px-4 fw-medium" disabled>Anterior</button>
+                    <button id="btn-next" class="btn btn-primary px-4 fw-bold">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="app.js"></script>
+</body>
+</html>
