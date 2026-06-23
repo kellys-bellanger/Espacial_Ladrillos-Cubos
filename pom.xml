@@ -28,6 +28,7 @@
 			<artifactId>openxava-7.7-chat-jdk17</artifactId>
 			<version>${openxava.version}</version>
 		</dependency>
+
 		
 		<!-- 
 		Para acceder a tu base de datos descomenta la entrada correspondiente 
