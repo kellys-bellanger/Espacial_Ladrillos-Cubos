@@ -13,9 +13,12 @@ import lombok.*; // Importamos Lombok para los Getters y Setters automáticos
 @View(members="idResultado; sujetoEvaluado, testEspacial; puntajeDirecto, percentil")
 public class ResultadoBFA {
 
+    // Modifica en ResultadoBFA.java: para mejora en ejecucion
     @Id
+    @GeneratedValue(generator = "system-uuid")
+    @org.hibernate.annotations.GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(length=32)
-    @Required
+    @Hidden // Para que OpenXava lo genere en automático en el backend sin pedirlo en interfaz
     private String idResultado;
 
     private int puntajeDirecto;

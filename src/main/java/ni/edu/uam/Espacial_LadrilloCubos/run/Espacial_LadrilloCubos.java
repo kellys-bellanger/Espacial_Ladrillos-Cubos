@@ -1,16 +1,17 @@
 package ni.edu.uam.Espacial_LadrilloCubos.run;
 
 import org.openxava.util.*;
-
-/**
- * Ejecuta esta clase para arrancar la aplicación.
- */
+import java.io.File;
 
 public class Espacial_LadrilloCubos {
 
 	public static void main(String[] args) throws Exception {
 		System.setProperty("openxava.initDB", "true");
-		//DBServer.start("Espacial_LadrilloCubos-db"); // Para usar tu propia base de datos comenta esta línea y configura src/main/webapp/META-INF/context.xml
-		AppServer.run(""); // Usa AppServer.run("") para funcionar en el contexto raíz
+
+		// Ejemplo (Pon la ruta exacta de tu carpeta en tu computadora):
+		String webappPath = "C:/TuUsuario/Proyectos/Espacial_LadrilloCubos/src/main/webapp";
+		System.setProperty("tomcat.webapp.dir", webappPath);
+
+		AppServer.run("");
 	}
 }

@@ -7,13 +7,8 @@
 
   <display-name>Espacial_LadrilloCubos</display-name>
 
-  <context-param>
-    <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>
-  </context-param>
-
   <welcome-file-list>
-    <welcome-file>xava/home.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
 </web-app>

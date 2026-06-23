@@ -38,7 +38,7 @@ public class Usuario {
 
     @Column(length=30)
     @Required
-    private String contraseña;
+    private String contrasena;
 
     /**
      * Realiza el control lógico de autenticación del usuario.
@@ -47,7 +47,7 @@ public class Usuario {
      * @return true si las credenciales coinciden, false en caso contrario.
      */
     public boolean autenticar(String correo, String password) {
-        if (this.correoElectronico == null || this.contraseña == null) return false;
-        return this.correoElectronico.equals(correo) && this.contraseña.equals(password);
+        if (this.correoElectronico == null || this.contrasena == null) return false;
+        return this.correoElectronico.equals(correo) && this.contrasena.equals(password);
     }
 }
