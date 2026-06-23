@@ -18,10 +18,8 @@ public class ResultadoBFA {
     @Required
     private String idResultado;
 
-    @Required
     private int puntajeDirecto;
 
-    @Required
     private int percentil;
 
     // Relación con el alumno (SujetoEvaluado)

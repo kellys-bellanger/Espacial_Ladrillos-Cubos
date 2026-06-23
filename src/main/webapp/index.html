@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Evaluación Psicométrica</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            width: 450px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #00d2ff;
+            font-size: 1rem;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #00d2ff;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+        }
+
+        input[type="text"]::placeholder {
+            color: #888;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #666;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="icon">🧩</div>
+    <h1>Test Espacial</h1>
+    <div class="subtitle">Módulo de Evaluación de Ladrillos y Cubos</div>
+
+    <form action="http://localhost:8080/Espacial_LadrilloCubos/verificar-estudiante" method="POST">
+        <div class="form-group">
+            <label for="cedula">Ingrese su Cédula de Identidad</label>
+            <input type="text" id="cedula" name="cedula" placeholder="Ej: 001-000000-0000X" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn-submit">Verificar Evaluación</button>
+    </form>
+
+    <footer>Desarrollado para el Sistema BFA</footer>
+</div>
+
+</body>
+</html>

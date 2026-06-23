@@ -1,33 +1,19 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="ISO-8859-1"?>
 
-<web-app>
-  <display-name>OpenXava Application</display-name>
-  
-  <!-- Evitar problema de bloqueo de archivos de IntelliJ en Windows -->
-  <servlet>
-    <servlet-name>jsp</servlet-name>
-    <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-    <init-param>
-      <param-name>suppressSmap</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <load-on-startup>3</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>jsp</servlet-name>
-    <url-pattern>*.jsp</url-pattern>
-  </servlet-mapping>
-  
-  <!-- Para cumplir con OWASP -->
-  <error-page>
-    <error-code>404</error-code>
-    <location>/WEB-INF/error404.html</location>
-  </error-page>
-  <error-page>
-    <error-code>500</error-code>
-    <location>/WEB-INF/error500.html</location>
-  </error-page>
-  
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+  <display-name>Espacial_LadrilloCubos</display-name>
+
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+
+  <welcome-file-list>
+    <welcome-file>xava/home.jsp</welcome-file>
+  </welcome-file-list>
+
 </web-app>

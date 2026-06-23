@@ -1,0 +1,74 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+.navbar-premium {
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    border-bottom: 4px solid #00c6ff;
+    padding: 15px 20px;
+}
+
+.timer-box {
+    background: #ff4757;
+    color: white;
+    padding: 6px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+}
+
+.main-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+}
+
+.img-container {
+    background: #ffffff;
+    border-radius: 15px;
+    border: 1px solid #e4e7eb;
+    min-height: 350px;
+}
+
+.opcion-card {
+    border: 2px solid #e4e7eb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 1rem;
+    color: #2f3542;
+    background: #ffffff;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.opcion-card:hover {
+    background: #f8fafd;
+    border-color: #00c6ff;
+    transform: translateX(4px);
+}
+
+.opcion-card.selected {
+    background: linear-gradient(45deg, rgba(0, 198, 255, 0.1), rgba(0, 114, 255, 0.1));
+    border-color: #0072ff;
+    color: #0072ff;
+    font-weight: 600;
+}
+
+.btn-action {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    font-weight: 600;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-action:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
+    color: white;
+}
