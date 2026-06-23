@@ -1,4 +1,3 @@
-Aquí tienes el archivo README.md adaptado al 100% con los datos exactos de tu proyecto (Espacial_LadrilloCubos), tus paquetes, tus modelos de datos y la estructura real que vimos en tus capturas.
 
 Espacial_LadrilloCubos
 Descripción
