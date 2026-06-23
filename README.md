@@ -52,3 +52,6 @@ Automatizar por completo el ciclo de aplicación, recolección de respuestas y b
 
 ### 🎛️ Componente de Control Web
 * **`VerificarEstudianteServlet`:** API interna interceptora que procesa las peticiones `doPost` del inicio de sesión estudiantil y administra los hilos transaccionales seguros a través de `XPersistence.getManager()`.
+
+  ###Anexos
+https://drive.google.com/drive/folders/1I-cMoGFjphk4Q1F4nyJjqQ0ONUdz00T5?usp=sharing
