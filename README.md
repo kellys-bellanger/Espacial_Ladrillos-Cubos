@@ -1,89 +1,12 @@
-
-Espacial_LadrilloCubos
-Descripción
-Espacial_LadrilloCubos es un sistema desarrollado para digitalizar la aplicación, corrección y baremación de la prueba de Visualización Espacial (Ladrillos y Cubos), perteneciente a la Batería Factorial de Aptitudes (BFA).
-
-El proyecto permite registrar y gestionar sujetos evaluados, aplicar pruebas de forma digital mediante un entorno web dedicado, controlar las respuestas de los estudiantes, calcular automáticamente los puntajes directos y realizar la baremación de los resultados de manera inmediata.
-
-La solución fue desarrollada utilizando Java, OpenXava, JPA/Hibernate, HTML5, CSS3 y JavaScript.
-
-Objetivo
-Automatizar el proceso de aplicación, calificación y baremación de la prueba de visualización espacial (Ladrillos y Cubos) de la batería BFA, eliminando el margen de error humano en los cálculos manuales, optimizando la recolección de métricas y facilitando el almacenamiento digital seguro de los expedientes psicológicos.
-
-Funcionalidades Principales
-Administración del Sistema (Módulo Psicólogo/Administrador)
-Gestión de Sujetos Evaluados: Registro, modificación y consulta de alumnos a evaluar.
-
-Gestión de Resultados BFA: Monitoreo y control de pruebas pendientes, puntajes directos y tablas de baremos calculadas.
-
-Administración del Modelo: Mapeo y persistencia completa de las entidades asociadas a la lógica de la prueba (PreguntaCubos, TestEspacial, Usuario, Psicologo).
-
-Aplicación de la Prueba (Módulo Estudiante)
-Validación de Credenciales: Verificación en tiempo real del estado del estudiante mediante su cédula de identidad y validación de pruebas asignadas pendientes.
-
-Interfaz Dinámica: Entorno interactivo y enfocado para la resolución de ítems visuales basados en figuras tridimensionales (bloques y cubos).
-
-Envío Seguro: Transmisión asíncrona de respuestas hacia el servidor web.
-
-Calificación y Baremación Automática
-Cálculo Inmediato: Evaluación matemática automática de las respuestas contrastadas contra la plantilla clave del test.
-
-Baremación Automatizada: Conversión del puntaje directo a rangos estandarizados de la prueba BFA de manera transparente en el backend.
-
-Tecnologías Utilizadas
-Backend
-Java
-
-OpenXava Framework
-
-JPA / Hibernate (Persistencia y ORM)
-
-Java Servlets (@WebServlet)
-
-Maven (Gestor de Dependencias)
-
-Frontend
-HTML5
-
-CSS3
-
-JavaScript (ES6+)
-
-Arquitectura del Sistema
-Modelo (Entidades de Persistencia)
-Las principales entidades del dominio del sistema son:
-
-SujetoEvaluado: Representa la información personal de la persona en evaluación.
-
-ResultadoBFA: Entidad central encargada de gestionar los puntajes y disparar los métodos calcularPuntajeDirecto() y generarBaremacionAutomatica().
-
-PreguntaCubos: Almacena la estructura lógica de los reactivos del examen.
-
-TestEspacial: Engloba la configuración general de la prueba.
-
-Psicologo y Usuario: Control y segmentación de roles del sistema.
-
-Componentes Web (Controladores)
-VerificarEstudianteServlet: Actúa como API REST intermedia (doPost), interceptando las peticiones de logueo de cédulas y procesando los envíos de respuestas del examen mediante hilos transaccionales independientes administrados por XPersistence.
-
-Flujo General del Sistema
-El Psicólogo registra al alumno en la plataforma administrativa de OpenXava (/modules/SujetoEvaluado).
-
-El Psicólogo le genera una asignación en blanco con puntajeDirecto = 0 en el módulo /modules/ResultadoBFA.
-
-El estudiante ingresa a la interfaz web e introduce su Cédula de Identidad.
-
-El VerificarEstudianteServlet valida la existencia del alumno y el examen con puntaje en cero.
-
-Se despliega la prueba técnica y el alumno selecciona sus respuestas.
-
-Al enviar el test, el Servlet recupera la cadena de respuestas, ejecuta el cálculo en caliente y realiza el commit de la transacción a la base de datos.
-
-Los datos consolidados quedan disponibles para análisis en el panel administrativo.
-
-Estructura Principal del Proyecto
-Plaintext
-src/
+📐 Espacial_LadrilloCubos📝 DescripciónEspacial_LadrilloCubos es una solución de software híbrida desarrollada para digitalizar, aplicar y calificar de forma automatizada la prueba de Visualización Espacial (Ladrillos y Cubos), correspondiente a la reconocida Batería Factorial de Aptitudes (BFA).El sistema unifica dos entornos: un potente panel administrativo gestionado por OpenXava para los profesionales de la salud mental y una interfaz web personalizada, intuitiva y moderna diseñada específicamente para optimizar la experiencia de los estudiantes durante la resolución del test.🎯 ObjetivoAutomatizar por completo el ciclo de aplicación, recolección de respuestas y baremación de la prueba psicométrica BFA de Ladrillos y Cubos. Esto mitiga el margen de error humano en las calificaciones manuales, centraliza los expedientes y agiliza la entrega de resultados clínicos en entornos académicos.✨ Funcionalidades Principales⚙️ Módulo Administrativo (Psicólogo)Control de Expedientes: Registro, edición y consulta detallada de los datos de cada SujetoEvaluado.Asignación de Pruebas: Creación y vinculación en blanco de registros en la entidad ResultadoBFA.Auditoría de Baremos: Monitoreo inmediato de los puntajes consolidados tras la resolución del test.💻 Módulo del Estudiante (Examen Interactivo)Validación de Credenciales: Verificación asíncrona de la cédula mediante un Servlet dedicado para asegurar evaluaciones pendientes.Entorno Minimalista: Despliegue enfocado de los reactivos tridimensionales para evitar distracciones visuales.Envío Transaccional: Almacenamiento seguro e inmediato en base de datos al finalizar los ítems.🧮 Calificación y Baremación AutomáticaEjecución interna del método calcularPuntajeDirecto() contrastando las respuestas contra la plantilla clave.Disparo automático de generarBaremacionAutomatica() para transformar la puntuación directa a los rangos estándar del baremo del test.🛠️ Tecnologías UtilizadasCapaTecnologíasBackendJava, OpenXava Framework, JPA / Hibernate, Java Servlets (@WebServlet), MavenFrontendHTML5, CSS3 (Custom Styles), JavaScript (Async/Fetch ES6+)PersistenciaHsqlDB / PostgreSQL / MySQL (Ecosistema compatible con JPA)🏗️ Arquitectura del Sistema📦 Modelo de Datos (Capa de Persistencia)SujetoEvaluado: Entidad que indexa la identidad del alumno en evaluación.ResultadoBFA: Componente core donde se almacena el estado del test, las respuestas crudas y los métodos de cálculo matemático.PreguntaCubos & TestEspacial: Modelos de soporte estructural para los reactivos del examen.Psicologo & Usuario: Entidades encargadas de la seguridad del dominio.🎛️ Componente de Control WebVerificarEstudianteServlet: API interna interceptora que procesa las peticiones doPost del inicio de sesión estudiantil y administra los hilos transaccionales seguros a través de XPersistence.getManager().🔄 Flujo General del SistemaFragmento de códigograph TD
+    A[Psicólogo registra alumno en OpenXava] --> B[Se crea asignación en ResultadoBFA con puntaje 0]
+    B --> C[Estudiante digita cédula en index.html]
+    C --> D[VerificarEstudianteServlet valida datos]
+    D --> E[Se despliega test.html de forma interactiva]
+    E --> F[Estudiante envía examen]
+    F --> G[Servlet calcula puntaje y guarda cambios]
+    G --> H[Resultados listos para auditoría en el Backend]
+📁 Estructura Principal del ProyectoPlaintextsrc/
 ├── main/
 │   ├── java/
 │   │   └── ni.edu.uam.Espacial_LadrilloCubos/
@@ -107,33 +30,6 @@ src/
 │       ├── test.html
 │       └── css/
 │           └── estilos.css
-Instalación y Ejecución
-Requisitos
-Java 11 o superior
-
-Maven 3.x
-
-Motor de Base de Datos compatible con OpenXava (HsqlDB / PostgreSQL / MySQL)
-
-Navegador Web Moderno
-
-Compilar y Empaquetar
-Para limpiar registros residuales y generar el artefacto ejecutable del proyecto, ejecute los comandos estándar del ciclo de vida de Maven:
-
-Bash
-mvn clean compile
+🚀 Instalación y Ejecución📋 Requisitos PreviosJava Development Kit (JDK) 11 o superior.Apache Maven 3.x instalado y configurado.🛠️ Compilación limpia y empaquetadoPara limpiar cachés previas y compilar los mapas dinámicos de OpenXava, ejecute en su terminal:Bashmvn clean compile
 mvn package
-Posteriormente, ejecutar la aplicación mediante la clase principal incorporada Espacial_LadrilloCubos.java.
-
-Conceptos Aplicados
-Programación Orientada a Objetos (POO): Modularidad, encapsulamiento y abstracción de la lógica clínica del test en componentes Java reutilizables.
-
-Mapeo Objeto-Relacional (ORM): Sincronización transparente de entidades Java con tablas relacionales mediante especificaciones JPA.
-
-Arquitectura Híbrida Web: Despliegue dual que combina formularios administrativos rápidos de OpenXava con vistas interactivas personalizadas para usuarios finales.
-
-Equipo de Desarrollo
-Proyecto desarrollado por estudiantes de la Universidad Americana (UAM).
-
-Licencia
-Este proyecto es de carácter estrictamente académico, desarrollado para la asignatura de Programación Orientada a Objetos.
+Posteriormente, inicie la aplicación ejecutando la clase principal embebida Espacial_LadrilloCubos.java.🎓 Conceptos Académicos AplicadosProgramación Orientada a Objetos (POO): Encapsulamiento riguroso de algoritmos psicométricos dentro de entidades lógicas del negocio.Mapeo Objeto-Relacional (ORM): Sincronización transparente de estados y persistencia automatizada.Despliegue Arquitectónico Híbrido: Coexistencia limpia entre vistas generadas dinámicamente por metadatos (OpenXava) e interfaces web asíncronas personalizadas de cara al usuario.👥 Equipo de DesarrolloProyecto diseñado e implementado por estudiantes de Ingeniería de la Universidad Americana (UAM).
